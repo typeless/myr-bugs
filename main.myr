@@ -1,32 +1,32 @@
 use std
 
-type ty = union
-	`Tyarray int
-	`Other
+type t2 = union
+	`Tt2_1 int
+	`Tt2_2
 ;;
 
-type srcloc = struct
-	file	: byte[:]
-	line	: int
+type t1 = struct
+	t1_1: byte[:]
+	t1_2: int
 ;;
 
-type tydef = struct
-	ty	: ty
-	loc	: srcloc
-	fixed	: bool
+type t0 = struct
+	t0_1: t2
+	t0_2: t1
+	t0_3: bool
 ;;
 	
-const istyarray = {t
+const bug = {t
 	match t
-	| [.ty=`Tyarray 1 ]:	-> true
+	| [.t0_1 =`Tt2_1 1 ]:	-> true
 	| _:			-> false
 	;;
 }
 
 const main = {
 	std.put("{}\n", false)
-	var b : tydef = [.ty = `Other]
-	var v = istyarray(b)
+	var b : t0 = [.t0_1 = `Tt2_2]
+	var v = bug(b)
 
 	std.put("{}\n", v)
 }
