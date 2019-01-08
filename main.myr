@@ -1,0 +1,32 @@
+use std
+
+type ty = union
+	`Tyarray int
+	`Other
+;;
+
+type srcloc = struct
+	file	: byte[:]
+	line	: int
+;;
+
+type tydef = struct
+	ty	: ty
+	loc	: srcloc
+	fixed	: bool
+;;
+	
+const istyarray = {t
+	match t
+	| [.ty=`Tyarray 1 ]:	-> true
+	| _:			-> false
+	;;
+}
+
+const main = {
+	std.put("{}\n", false)
+	var b : tydef = [.ty = `Other]
+	var v = istyarray(b)
+
+	std.put("{}\n", v)
+}
