@@ -18,7 +18,7 @@ type t0 = struct
 	
 const bug = {t
 	match t
-	| [.t0_1 =`T2_1 1 ]:	-> true
+	| [.t0_1 =`T2_1 0 ]:	-> true
 	| _:			-> false
 	;;
 }
