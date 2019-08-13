@@ -1,18 +1,18 @@
 use std
 
-type t2 = union
-	`T2_1 int
-	`T2_2
+type U2 = union
+	`U2_1 int8
+	`U2_2
 ;;
 
-type t1 = struct
+type S1 = struct
 	t1_1: int[:]
-	t1_2: int
+	t1_2: int16
 ;;
 
-type t0 = struct
-	t0_1: t2
-	t0_2: t1
+type S0 = struct
+	t0_1: U2
+	t0_2: S1
 	t0_3: int
 ;;
 
@@ -24,10 +24,10 @@ type u9 = union
 	
 const main = {
 
-	var v : t0 = [.t0_1 = `T2_2]
+	var v : S0 = [.t0_1 = `U2_2]
 	match v
-	| [.t0_1 =`T2_1 0 ]	: 0
-	| _			: 1
+	| [.t0_1 =`U2_1 20 ]	: 100
+	| _			: 200
 	;;
 
 //	match `std.Some (1, 3)
